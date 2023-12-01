@@ -7,32 +7,16 @@ try:
   archivo = open(nombre_archivo, "r")
 except:
   print("No se pudo abrir el fichero", nombre_archivo)
+  exit()
 
-numbers = {"one" :1, "two":2, "three":3, "four":4, "five":5, "six":6, "seven":7, "eight":8, "nine":9}
+numbers_value = {"one" :"o1e", "two":"t2o", "three":"t3e", "four":"f4r", "five":"f5e", "six":"s6x", "seven":"s7n", "eight":"e8t", "nine":"9e"}
 
 suma = 0
 for linea in archivo:
-  first = {}
-  last = {}
-  # Para cada dígito del 1 al 9, lo buscamos en la línea
-  for number in numbers:
-    if(linea.find(number) > -1):
-      first[number] = linea.find(number)
-    if(linea.rfind(number) > -1):
-      last[number] = linea.rfind(number)
-  
-  if(first):
-     first_number = min(first, key=first.get)
-     last_number = max(last, key=last.get)
+  for number in numbers_value:
+    linea = linea.replace(number, numbers_value[number])
 
-  print(first_number)
-
-  if(first_number != None):
-    line_with_nubmers = linea.replace(first_number, str(numbers[first_number]))
-  if(last_number != None):
-    line_with_nubmers = line_with_nubmers.replace(last_number, str(numbers[last_number]))
-
-  digits = re.findall(r'\d', line_with_nubmers)
+  digits = re.findall(r'\d', linea)
   print(digits)
   suma += int(digits[0]+digits[-1])
 
