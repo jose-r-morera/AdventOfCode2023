@@ -14,13 +14,17 @@ suma = 0
 for linea in archivo:
   first = {}
   last = {}
+  # Para cada dígito del 1 al 9, lo buscamos en la línea
   for number in numbers:
     if(linea.find(number) > -1):
       first[number] = linea.find(number)
     if(linea.rfind(number) > -1):
       last[number] = linea.rfind(number)
-  first_number = min(first, key=first.get)
-  last_number = max(last, key=last.get)
+  
+  if(first):
+     first_number = min(first, key=first.get)
+     last_number = max(last, key=last.get)
+
   print(first_number)
 
   if(first_number != None):
