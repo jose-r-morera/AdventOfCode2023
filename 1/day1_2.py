@@ -8,17 +8,17 @@ try:
 except:
   print("No se pudo abrir el fichero", nombre_archivo)
 
-numbers = {"one" :1, "two":2, "trhee":3, "four":4, "five":5, "six":6, "seven":7, "eight":8, "nine":9}
+numbers = {"one" :1, "two":2, "three":3, "four":4, "five":5, "six":6, "seven":7, "eight":8, "nine":9}
 
 suma = 0
 for linea in archivo:
-  first = {"one" :-1, "two":-1, "three":-1, "four":-1, "five":-1, "six":-1, "seven":-1, "eight":-1, "nine":-1}
-  last = {"one" :-1, "two":-1, "three":-1, "four":-1, "five":-1, "six":-1, "seven":-1, "eight":-1, "nine":-1}
-  for number in first:
+  first = {}
+  last = {}
+  for number in numbers:
     if(linea.find(number) > -1):
       first[number] = linea.find(number)
     if(linea.rfind(number) > -1):
-      last[number] = linea.find(number)
+      last[number] = linea.rfind(number)
   first_number = min(first, key=first.get)
   last_number = max(last, key=last.get)
   print(first_number)
