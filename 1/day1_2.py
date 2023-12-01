@@ -12,8 +12,8 @@ numbers = {"one" :1, "two":2, "trhee":3, "four":4, "five":5, "six":6, "seven":7,
 
 suma = 0
 for linea in archivo:
-  first = {"one" :-1, "two":-1, "trhee":-1, "four":-1, "five":-1, "six":-1, "seven":-1, "eight":-1, "nine":-1}
-  last = {"one" :-1, "two":-1, "trhee":-1, "four":-1, "five":-1, "six":-1, "seven":-1, "eight":-1, "nine":-1}
+  first = {"one" :-1, "two":-1, "three":-1, "four":-1, "five":-1, "six":-1, "seven":-1, "eight":-1, "nine":-1}
+  last = {"one" :-1, "two":-1, "three":-1, "four":-1, "five":-1, "six":-1, "seven":-1, "eight":-1, "nine":-1}
   for number in first:
     if(linea.find(number) > -1):
       first[number] = linea.find(number)
@@ -21,6 +21,7 @@ for linea in archivo:
       last[number] = linea.find(number)
   first_number = min(first, key=first.get)
   last_number = max(last, key=last.get)
+  print(first_number)
 
   if(first_number != -1):
     line_with_nubmers = linea.replace(first_number, str(numbers[first_number]))
