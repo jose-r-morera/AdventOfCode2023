@@ -23,9 +23,9 @@ for linea in archivo:
   last_number = max(last, key=last.get)
   print(first_number)
 
-  if(first_number != -1):
+  if(first_number != None):
     line_with_nubmers = linea.replace(first_number, str(numbers[first_number]))
-  if(last_number != -1):
+  if(last_number != None):
     line_with_nubmers = line_with_nubmers.replace(last_number, str(numbers[last_number]))
 
   digits = re.findall(r'\d', line_with_nubmers)
