@@ -21,15 +21,15 @@ ids_sum = 0
 
 for linea in archivo:
   valid = True
-  max_cubes = {"red": 0, "green": 0, "blue": 0}
+
   for cube in cubes_limit:
     string_values = re.findall(r"(\d+) " + cube, linea)
     int_values = [int(value) for value in string_values]
-    max_cubes[cube] = max(int_values)
-    if(max_cubes[cube] > cubes_limit[cube]):
+ 
+    if(max(int_values) > cubes_limit[cube]):
       valid = False
       break
-    
+
   if(valid):
     game_id = int(re.search(r"Game \d+", linea)[0][5:])
     ids_sum += game_id
