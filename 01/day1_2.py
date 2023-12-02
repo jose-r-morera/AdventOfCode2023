@@ -1,32 +1,32 @@
 #!/usr/bin/python3
 
-# Dia 1 parte 1
+# Dia 1 parte 2
 # See:  https://adventofcode.com/2023/day/1
 # Date: 01/12/2023
 __author__ = "José Ramón Morera Campos"
 
 import re # regex
 
-nombre_archivo = input("Introduzca la ruta del archivo: ")
+file_name = input("Introduzca la ruta del archivo: ")
 
 try:
-  archivo = open(nombre_archivo, "r")
+  file = open(file_name, "r")
 except:
-  print("No se pudo abrir el fichero", nombre_archivo)
+  print("No se pudo abrir el fichero", file_name)
   exit()
 
 # Sustituimos un número por su valor numérico además de mantener su primera y última letra para mantener los números superpuestos
 numbers_replacement = {"one" :"o1e", "two":"t2o", "three":"t3e", "four":"f4r", "five":"f5e", "six":"s6x", "seven":"s7n", "eight":"e8t", "nine":"9e"}
 
-suma = 0
-for linea in archivo:
+sum = 0
+for line in file:
   for number in numbers_replacement:
-    linea = linea.replace(number, numbers_replacement[number])
+    line = line.replace(number, numbers_replacement[number])
 
-  digits = re.findall(r'\d', linea)
+  digits = re.findall(r'\d', line)
   print(digits)
-  suma += int(digits[0]+digits[-1])
+  sum += int(digits[0]+digits[-1])
 
 
-print("La suma es: " + str(suma))
-archivo.close()
+print("La suma es: " + str(sum))
+file.close()

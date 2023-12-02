@@ -7,23 +7,23 @@ __author__ = "José Ramón Morera Campos"
 
 import re # regex
 
-nombre_archivo = input("Introduzca la ruta del archivo: ")
+file_name = input("Introduzca la ruta del archivo: ")
 
 try:
-  archivo = open(nombre_archivo, "r")
+  file = open(file_name, "r")
 except:
-  print("No se pudo abrir el fichero", nombre_archivo)
+  print("No se pudo abrir el fichero", file_name)
   exit()
 
 # Dado por el enunciado
 cubes_limit = {"red": 12, "green": 13, "blue": 14}
 ids_sum = 0
 
-for linea in archivo:
+for line in file:
   valid = True
 
   for cube in cubes_limit:
-    string_values = re.findall(r"(\d+) " + cube, linea)
+    string_values = re.findall(r"(\d+) " + cube, line)
     int_values = [int(value) for value in string_values]
  
     if(max(int_values) > cubes_limit[cube]):
@@ -31,8 +31,8 @@ for linea in archivo:
       break
 
   if(valid):
-    game_id = int(re.search(r"Game \d+", linea)[0][5:])
+    game_id = int(re.search(r"Game \d+", line)[0][5:])
     ids_sum += game_id
 
 print("La suma de ids es: " + str(ids_sum))
-archivo.close()
+file.close()
