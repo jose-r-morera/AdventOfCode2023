@@ -22,7 +22,6 @@ for line in file:
   first_part = re.search(r"\: .+ \|", line)
   winning_string_values = re.findall(r"\d+", first_part[0])
   winning_int_values = [int(value) for value in winning_string_values]
-  print(winning_int_values)
 
   second_part = re.search(r'\| .+', line)
   numbers_string_values = re.findall(r"\d+", second_part[0])
@@ -32,7 +31,6 @@ for line in file:
   current_points = 0
   for number in numbers_int_values:
     if(number in winning_int_values):
-      print(number)
       if first:
         current_points += 1
         first = False
