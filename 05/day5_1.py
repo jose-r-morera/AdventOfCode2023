@@ -7,39 +7,36 @@ __author__ = "José Ramón Morera Campos"
 
 import re # regex
 
-#file_name = input("Introduzca la ruta del archivo: ")
-file_name = "data"
-
+file_name = input("Introduzca la ruta del archivo: ")
 try:
   file = open(file_name, "r")
 except:
   print("No se pudo abrir el fichero", file_name)
   exit()
 
-seeds = []
+seeds = [] # Pares [valor, procesado] (procesado indica si ya se ha cambiado en la sección actual)
 for seed in re.findall(r"(\d+)", file.readline()):
-  seeds.append([int(seed), int(seed), False])
+  seeds.append([int(seed), False])
 
 for line in file:
   data = re.findall(r"(\d+)",line)
-  if (data == []):
+  if (not data):
     for i, _ in enumerate(seeds):
-      seeds[i][2] = False
+      seeds[i][1] = False
     continue
   src = int(data[1])
   src_range = range(src, src+int(data[2]))
   dst = int(data[0])
 
   for i, _ in enumerate(seeds):
-    if(seeds[i][2] == False and seeds[i][1] in src_range):
-      #print("La semilla ", seeds[i][0], "corresponde", (seeds[i][1]-src+dst))
-      seeds[i][1] = seeds[i][1] - src + dst
-      seeds[i][2] = True
+    if(seeds[i][1] == False and seeds[i][0] in src_range):
+      seeds[i][0] = seeds[i][0] - src + dst
+      seeds[i][1] = True
 
-min = seeds[1][1]
+min = seeds[1][0]
 for seed in seeds:
-  if(seed[1] < min):
-    min = seed[1]
+  if(seed[0] < min):
+    min = seed[0]
 
-print("La suma de puntos es: ", min)
+print("El menor valor obtenido es: ", min)
 file.close()
