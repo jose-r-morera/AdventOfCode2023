@@ -20,26 +20,18 @@ result = 1 # Multiplicacion de las formas de ganar
 races = []
 
 for time in re.findall(r"\d+", file.readline()):
-  races.append([time, 0])
+  races.append([int(time), 0])
 
-count = 0
-for distance in re.findall(r"\d+", file.readline()):
-  races[count][1] = distance
-  count += 1
+for  index, distance in enumerate(re.findall(r"\d+", file.readline())):
+  races[index][1] = int(distance)
 
-for race in races:
-  time = int(race[0])
-  distance = int(race[1])
-  race_count = 0
+for time, distance in races:
+  race_win_count = 0
 
   for time_holding in range(1, time):
     if ((time - time_holding) * time_holding > distance):
-      print(time_holding)
-      race_count += 1
-  print("cuenta:", race_count)
-  result *= race_count
-
-print(races)
+      race_win_count += 1
+  result *= race_win_count
 
 print("La suma de puntos es: " + str(result))
 file.close()

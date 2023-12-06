@@ -17,23 +17,17 @@ except:
   exit()
 
 result = 0 # Formas de ganar la carrera
-race_time = ""
-race_distance = ""
+race = [0,0] # Carrera formada por [tiempo, distancia]
 
-total_time = ""
-for time in re.findall(r"\d+", file.readline()):
-  total_time += time
-race_time = int(total_time)
+for i in [0, 1]:
+  accumulator = ""
+  for partial_value in re.findall(r"\d+", file.readline()):
+    accumulator += partial_value
+  race[i] = int(accumulator)
 
-total_distance = ""
-for distance in re.findall(r"\d+", file.readline()):
-  total_distance += distance
-race_distance = int(total_distance)
-
-for time_holding in range(1, race_time):
-  if ((race_time - time_holding) * time_holding > race_distance):
+for time_holding in range(1, race[0]):
+  if ((race[0]- time_holding) * time_holding > race[1]):
     result += 1
 
 print("Las formas de ganar la carrera son: " + str(result))
 file.close()
-
