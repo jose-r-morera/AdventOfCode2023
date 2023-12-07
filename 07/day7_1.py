@@ -36,13 +36,13 @@ for current_hand_value in hands:
       break
   
   pow = 1
-  for digit in range(0,5):  # Asignamos valor según cada dígito
-    hands[current_hand_value][1] += card_points[current_hand_value[4-digit]] * pow
+  for card_index in range(0,5):  # Asignamos valor según cada carta de la mano
+    hands[current_hand_value][1] += card_points[current_hand_value[4-card_index]] * pow
     pow *= 100
 
 total_winnings = 0
-for index, card in enumerate(sorted(hands.items(), key=lambda item: item[1][1])): # Ordenamos según el valor numérico
-  total_winnings += int(card[1][0]) * (index + 1)
+for index, hand in enumerate(sorted(hands.items(), key=lambda item: item[1][1])): # Ordenamos según el valor numérico
+  total_winnings += int(hand[1][0]) * (index + 1)
 
 print("La suma de puntos es: " + str(total_winnings))
 file.close()
