@@ -47,12 +47,8 @@ for step in instructions:
 
 total_sum = 0 # Total
 for box_index, box in enumerate(boxes):
-  if box:
-    #print(box)
-    for lens_index, lens in enumerate(box):
-      #print((box_index+1)*(lens_index+1)*lens[1])
-      total_sum += (box_index+1)*(lens_index+1)*lens[1]
+  for lens_index, lens in enumerate(box):
+    total_sum += (box_index+1)*(lens_index+1)*lens[1]
     
-
 print("La suma de puntos es: " + str(total_sum))
 file.close()
